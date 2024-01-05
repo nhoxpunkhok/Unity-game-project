@@ -1,5 +1,5 @@
 using UnityEngine;
-public class PlayerStats : MonoBehaviour
+public class Stats : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
 
