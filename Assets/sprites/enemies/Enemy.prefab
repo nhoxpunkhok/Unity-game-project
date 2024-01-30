@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8049683470078310613}
   - component: {fileID: 8081799102070178725}
   - component: {fileID: 2682658197513951817}
-  - component: {fileID: 7352832611016220354}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -121,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3978000704959711894}
-  maxEnemies: 10
+  bossPrefab: {fileID: 0}
   spawnDistance: 20
   minSpawnDistance: 10
   spawnInterval: 3
@@ -138,16 +137,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
---- !u!114 &7352832611016220354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3978000704959711894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6987f82816888ff48a5b18b0bb786f5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10

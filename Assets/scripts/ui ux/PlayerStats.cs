@@ -17,7 +17,7 @@ public class Stats : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
 		{
-			TakeDamage(20);
+			LoseHealth(20);
 		}
         if (currentHealth > maxHealth)
         {
@@ -28,9 +28,9 @@ public class Stats : MonoBehaviour
             Die();
         }
     }
-    public void TakeDamage(float amount)
+    public void LoseHealth(float damage)
     {
-        currentHealth -= amount;
+        currentHealth -= damage;
         healthBar.SetSlider(currentHealth);
     }
     public void HealPlayer(float amount)

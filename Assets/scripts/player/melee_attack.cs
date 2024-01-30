@@ -15,9 +15,25 @@ public class MeleeAttack : MonoBehaviour
 
     void Update()
     {
-        PerformMeleeAttack();
+        //PerformMeleeAttack();
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (Time.time - lastAttackTime >= attackDelay)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                Debug.Log("attack");
+                //Debug.Log("Melee attack performed at: " + Time.time);
+                lastAttackTime = Time.time ;
+   
+            }
+        }
+        else
+        {
+            Debug.Log("thoi gian den lan tan cong ke tip: " + (lastAttackTime + attackDelay - Time.time));
+        }
+    }
     void PerformMeleeAttack()
     {
         if (Time.time - lastAttackTime >= attackDelay)
@@ -40,7 +56,7 @@ public class MeleeAttack : MonoBehaviour
                     DealDamage(nearestCollider.gameObject);
                     lastAttackTime = Time.time;
                 }
-                Debug.Log("Melee attack performed at: " + Time.time);
+            
             }
         }
         else
@@ -86,28 +102,6 @@ public class MeleeAttack : MonoBehaviour
             }
         }
     }
-
-    void OnDrawGizmos()
-    {
-#if UNITY_EDITOR
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, outerRange);
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-
-        DrawWireArc(transform.position, transform.up, transform.forward, attackAngle, attackRange, Color.red);
-#endif
-    }
-
-#if UNITY_EDITOR
-    void DrawWireArc(Vector3 position, Vector3 axis, Vector3 from, float angle, float radius, Color color)
-    {
-        Handles.color = color;
-        Handles.DrawWireArc(position, axis, from, angle, radius);
-    }
-#endif
-
     void DealDamage(GameObject target)
     {
         Enemy_01 enemyHealth = target.GetComponent<Enemy_01>();
