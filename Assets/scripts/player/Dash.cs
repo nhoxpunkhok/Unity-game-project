@@ -28,7 +28,7 @@ public class Dash : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash)
         {
             StartCoroutine(Dashes());
         }
