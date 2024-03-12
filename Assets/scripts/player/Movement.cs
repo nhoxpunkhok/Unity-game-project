@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController controller;
@@ -14,16 +14,12 @@ public class Movement : MonoBehaviour
 
     public Transform cam;
 
-    //Jump Stuff
     Vector3 velocity;
     public float gravity = -9.8f;
     public Transform groundCheck;
     public float groundDist;
     public LayerMask groundMask;
     bool isGrounded;
-    public float jumpHeight = 3;
-
-    //Dash & Movement
     public Vector3 moveDir;
 
     // Start is called before the first frame update
@@ -51,19 +47,6 @@ public class Movement : MonoBehaviour
 
             moveDir = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
-        }
-
-        //Jump
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -1f;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded && dir.magnitude <= 0.05f)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-
         }
 
         velocity.y += gravity * Time.deltaTime;

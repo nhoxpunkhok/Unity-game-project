@@ -35,17 +35,17 @@ public class Enemy_01 : MonoBehaviour
 
     void Die()
     {
-        if (isBoss)
+        /*if (isBoss)
         {
             Boss.BossSpawnConditions.NotifyBossSpawned();
         }
-
+        */
         Destroy(gameObject);
     }
 
     public void SetAsBoss()
     {
-        isBoss = true;
+        //isBoss = true;
         maxHealth = 100;
         currentHealth = maxHealth;
     }

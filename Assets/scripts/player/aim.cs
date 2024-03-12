@@ -9,7 +9,7 @@ namespace BarthaSzabolcs.IsometricAiming
         #region Editor Settings
 
         [SerializeField] private LayerMask groundMask;
-
+       
         #endregion
         #region Private Fields
 

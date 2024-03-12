@@ -1,24 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    private Transform player;
+    public Transform player;
+    public float maxTime = 1.0f;
+    public float maxDistance = 1.0f;
 
+    NavMeshAgent agent;
+    Animator animator;
+
+    float timer = 0.0f; 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>(); 
     }
 
     void Update()
     {
-        // huong ve phia player
-        Vector3 direction = (player.position - transform.position).normalized;
-        transform.rotation = Quaternion.LookRotation(direction);
-
-        // di chuyen ve phia player
-        transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
+        timer -= Time.deltaTime;
+        if (timer < 0.0f){
+            float sqDistance = (player.position - transform.position).sqrMagnitude;
+            if (sqDistance < maxDistance*maxDistance) { 
+                agent.destination = player.position;
+            }
+            timer = maxTime;
+        }
+        animator.SetFloat("Speed", agent.velocity.magnitude);
     }
 }
